@@ -106,7 +106,7 @@ const Cart: React.FC = () => {
 
                 {/* Remove */}
                 <button
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+                  className="bg-[#99582A] text-white px-4 py-2 rounded transition-colors"
                   onClick={() => handleRemove(item._id, item.size)}
                 >
                   Remove
@@ -126,7 +126,7 @@ const Cart: React.FC = () => {
             </div>
             <button
               onClick={handleProceedToCheckout}
-              className="block bg-green-500 text-white px-4 py-2 rounded mt-4 w-full text-center hover:bg-green-600"
+              className="block bg-[#99582A] text-white px-4 py-2 rounded mt-4 w-full text-center"
             >
               Proceed to Checkout
             </button>

@@ -5,12 +5,18 @@ export default function cart () {
   return (
     <div>
       {/* Header Section */}
-      <div className="w-full h-[286px] bg-[#F6F5FF]">
-        <div className='absolute top-48 left-10 md:top-60 md:left-60'>
-          <h2 className='text-[#101750] font-[Josefin Sans] text-[26px] md:text-[36px] font-[700]'>Order Compelete</h2>
-          <Link href="" className='px-2 '>Home.</Link>
-          <Link href="">Page.</Link>
-          <Link href="" className='text-[#FB2E86] text-[16px] font-[500] px-2'>Order Compelete</Link>
+      <div className="w-full h-[286px] bg-black relative">
+        <div className="absolute top-48 left-10 md:top-20 md:left-60">
+          <h2 className="text-white font-dancing lg:font-[forte] text-[36px] md:text-[36px] font-[800]">
+            Order Complete
+          </h2>
+          <Link href="/" className="px-2 text-white font-playfair">
+            Home
+          </Link>
+          <span className="px-2 text-white ">/</span>
+          <span className="text-white text-[16px] font-[500] px-2 font-playfair">
+            Order Complete
+          </span>
         </div>
       </div>
       <div className="py-20">
@@ -19,7 +25,7 @@ export default function cart () {
             <p className="text-[10px] md:text-[20px] py-3 mb-8">Thank you for your order! Your order is being processed and will be completed within 3-6
             hours. You will receive an email confirmation when your order is completed.
             </p>
-            <Link href="/" className=" bg-pink-500 text-white px-4 py-4  rounded w-full hover:bg-pink-600 text-[24px] md:text-base">
+            <Link href="/" className=" bg-[#99582A] text-white px-4 py-4  rounded w-full text-[24px] md:text-base">
                 Countinue Shopping
               </Link>
         </div>
