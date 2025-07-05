@@ -8,9 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-      leather: ['"forte"', 'serif'],
-    },
+  fontFamily: {
+    poppins: ['Poppins', 'sans-serif'],
+    playfair: ['"Playfair Display"', 'serif'],
+    dancing: ['"Dancing Script"', 'cursive'],
+    vibes: ['"Great Vibes"', 'cursive'],
+  },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -53,8 +53,8 @@ const Featured = async () => {
   const products = await fetchProducts();
 
   return (
-    <section className="pt-24 px-2 md:px-8 lg:px-12">
-      <h2 className="text-[30px] md:text-[34px] lg:text-[44px] font-[Stencil] text-center text-black font-extrabold mb-10 uppercase tracking-wide">
+    <section className="xl:pt-24 px-2 md:px-8 lg:px-12">
+      <h2 className="text-[30px] md:text-[34px] lg:text-[44px] font-dancing lg:font-[Stencil] text-center text-black font-extrabold mb-10 uppercase tracking-wide">
         Shop Best Sellers
       </h2>
 

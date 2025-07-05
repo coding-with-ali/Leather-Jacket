@@ -10,8 +10,8 @@ export default function page() {
   return (
     <main className="bg-[#f7f7f0] space-y-20">
       <FadeInWhenVisible><HeroSection/></FadeInWhenVisible>
-      <FadeInWhenVisible><Featured /></FadeInWhenVisible>
       <FadeInWhenVisible><Topcategory /></FadeInWhenVisible>
+      <FadeInWhenVisible><Featured /></FadeInWhenVisible>
       <FadeInWhenVisible><Shopex /></FadeInWhenVisible>
       <FadeInWhenVisible><Question /></FadeInWhenVisible>
     </main>

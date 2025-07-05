@@ -12,9 +12,10 @@ import { useRouter } from "next/navigation";
 interface CartItem {
   _id: string;
   name: string;
-  price: string; // ✅ price as string like "$25.00"
+  price: string;
   image: string;
   quantity: number;
+  size?: string;
 }
 
 const Cart: React.FC = () => {
@@ -22,19 +23,19 @@ const Cart: React.FC = () => {
   const cartItems: CartItem[] = useSelector((state: RootState) => state.cart);
   const router = useRouter();
 
-  const handleQuantityChange = (_id: string, quantity: number) => {
+  const handleQuantityChange = (_id: string, size: string | undefined, quantity: number) => {
     if (quantity > 0) {
-      dispatch(updateQuantity({ _id, quantity }));
+      dispatch(updateQuantity({ _id, size, quantity }));
     }
   };
 
-  const handleRemove = (_id: string) => {
-    dispatch(remove({ _id }));
+  const handleRemove = (_id: string, size: string | undefined) => {
+    dispatch(remove({ _id, size }));
   };
 
-  // ✅ Subtotal by parsing string price
+  // ✅ Subtotal calculation with safe string coercion
   const subtotal = cartItems.reduce((acc, product) => {
-    const price = parseFloat(product.price.replace("$", "")) || 0;
+    const price = parseFloat(String(product.price).replace("$", "")) || 0;
     return acc + price * (product.quantity || 1);
   }, 0);
 
@@ -48,12 +49,12 @@ const Cart: React.FC = () => {
       {/* Header Section */}
       <div className="w-full h-[286px] bg-black relative">
         <div className="absolute top-28 left-10 md:top-28 md:left-60">
-          <h2 className="text-white font-[forte] text-[26px] md:text-[36px] font-[700]">
+          <h2 className="text-white font-dancing lg:font-[forte] text-[36px] md:text-[36px] font-[700]">
             Your Cart
           </h2>
-          <Link href="/" className="px-2 text-white">Home</Link>
+          <Link href="/" className="px-2 text-white font-playfair">Home</Link>
           <span className="px-2 text-white">/</span>
-          <span className="text-white text-[16px] font-[500] px-2">Cart</span>
+          <span className="text-white text-[16px] font-[500] px-2 font-playfair">Cart</span>
         </div>
       </div>
 
@@ -65,7 +66,7 @@ const Cart: React.FC = () => {
             <p className="text-center text-gray-500">Your cart is empty!</p>
           ) : (
             cartItems.map((item: CartItem) => (
-              <div key={item._id} className="flex items-center bg-white shadow-md rounded-lg p-4">
+              <div key={`${item._id}-${item.size}`} className="flex items-center bg-white shadow-md rounded-lg p-4">
                 {/* Image */}
                 <div className="flex-shrink-0">
                   <Image
@@ -80,16 +81,19 @@ const Cart: React.FC = () => {
                 {/* Info */}
                 <div className="ml-4 flex-grow">
                   <h5 className="text-lg font-semibold text-gray-800">{item.name}</h5>
+                  {item.size && (
+                    <p className="text-sm text-gray-500 mb-1">Size: {item.size}</p>
+                  )}
                   <div className="flex items-center mt-2">
                     <button
-                      onClick={() => handleQuantityChange(item._id, item.quantity - 1)}
+                      onClick={() => handleQuantityChange(item._id, item.size, item.quantity - 1)}
                       className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                     >
                       -
                     </button>
                     <span className="mx-4">{item.quantity}</span>
                     <button
-                      onClick={() => handleQuantityChange(item._id, item.quantity + 1)}
+                      onClick={() => handleQuantityChange(item._id, item.size, item.quantity + 1)}
                       className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                     >
                       +
@@ -103,7 +107,7 @@ const Cart: React.FC = () => {
                 {/* Remove */}
                 <button
                   className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-                  onClick={() => handleRemove(item._id)}
+                  onClick={() => handleRemove(item._id, item.size)}
                 >
                   Remove
                 </button>

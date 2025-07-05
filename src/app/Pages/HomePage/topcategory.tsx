@@ -27,7 +27,7 @@ export default function BannerSection() {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-4 md:px-10 pt-[200px]">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-4 md:px-10 lg:pt-[100px]">
       {banners.map((banner, index) => (
         <div
           key={index}
